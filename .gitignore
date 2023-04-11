@@ -4,3 +4,7 @@ db.sqlite3
 zipcodes/__pycache__
 zipcodes/migrations/__pycache__
 pythonTestProject/__pycache__/settings.cpython-311.pyc
+pythonTestProject/.env
+pythonTestProject/__pycache__/__init__.cpython-311.pyc
+pythonTestProject/__pycache__/settings.cpython-311.pyc
+pythonTestProject/logger/__pycache__/formatters.cpython-311.pyc

@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from zipcodes import views
+from zipcodes.views import get_location_info
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('location/', views.get_location_info, name='get_location_info')
+    path('location/<str:zip_code>/', get_location_info, name='get_location_info'),
 ]

@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*l3vp=c+6*rg)=0q9307!%$nm=xp7mr!3ps4cgw%e1gk0@ne&q'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure')
+ZIPCODE_API_KEY = os.getenv('ZIPCODE_API_KEY', 'django-insecure')
+
+SECRETS = [
+    SECRET_KEY,
+    ZIPCODE_API_KEY
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -123,32 +132,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-        'redacted': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
-            'redact': ['password', 'secret']
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO'
-        }
-    }
-}
