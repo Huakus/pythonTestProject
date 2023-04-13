@@ -3,9 +3,8 @@ from django.http import Http404
 from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Location
 from .serializers import LocationSerializer
-import requests
+from .services import ILocationService, BasicLocationService
 import logging
 
 logger = logging.getLogger(__name__)
@@ -13,20 +12,13 @@ logger = logging.getLogger(__name__)
 @api_view(['GET'])
 def get_location_info(request, zip_code):
     try:
-        url = f'https://www.zipcodeapi.com/rest/{settings.ZIPCODE_API_KEY}/info.json/{zip_code}/degrees'
-        response = requests.get(url)
+        zip_code = 90210
 
-        zip_code_info = response.json()
-
-        location_info = {
-            "zip_code": zip_code_info['zip_code'],
-            "name": zip_code_info['city'],
-            "lat": zip_code_info['lat'],
-            "lon": zip_code_info['lng'],
-            "state": zip_code_info['state']
-        }
-
+        location_service:ILocationService = BasicLocationService()
+            
+        location_info = location_service.get_location_info(zip_code)
         location_serializer = LocationSerializer(data=location_info)
+
         if location_serializer.is_valid():
             location_serializer.save()
         else:
