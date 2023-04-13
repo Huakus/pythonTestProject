@@ -4,17 +4,15 @@ from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import LocationSerializer
-from .services import ILocationService, BasicLocationService
+from .services import ILocationService
 import logging
 
 logger = logging.getLogger(__name__)
 
 @api_view(['GET'])
-def get_location_info(request, zip_code):
+def get_location_info(request, zip_code, location_service: ILocationService):
     try:
         zip_code = 90210
-
-        location_service:ILocationService = BasicLocationService()
             
         location_info = location_service.get_location_info(zip_code)
         location_serializer = LocationSerializer(data=location_info)
