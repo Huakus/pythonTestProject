@@ -13,12 +13,9 @@ def get_location_info(request, zip_code, location_service: ILocationService, loc
         location_info = location_service.get_location_info(zip_code)
         location_serializer = location_serializer_class(data=location_info)
 
-        if location_serializer.is_valid():
-            location_serializer.save()
-        else:
-            logging.warn("location_serializer is not valid for %s", location_info)
+        location_serializer.validate_and_save()
 
-        return Response(location_info)
+        return Response(location_serializer.data)
     except Exception as e:
         logger.error('Exception getting location info: %s', str(e), exc_info=1)
         raise Http404
