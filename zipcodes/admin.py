@@ -3,6 +3,6 @@ from .models import Location
 
 
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'zip_code', 'lat', 'lon', 'state', 'country', 'country_code', 'timestamp')
+    list_display = ('id', 'name', 'zip_code', 'lat', 'lon', 'state')
 
-admin.register(Location, LocationAdmin)
+admin.site.register(Location, LocationAdmin)
