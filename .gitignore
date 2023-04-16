@@ -10,3 +10,4 @@ pythonTestProject/__pycache__/settings.cpython-311.pyc
 pythonTestProject/logger/__pycache__/formatters.cpython-311.pyc
 pythonTestProject/__pycache__/__init__.cpython-311.pyc
 pythonTestProject/__pycache__/settings.cpython-311.pyc
+.vscode/launch.json
