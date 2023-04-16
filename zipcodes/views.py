@@ -11,9 +11,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
+@api_view(['GET'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
-@api_view(['GET'])
 def get_location_info(request, zip_code, location_service: ILocationService, location_serializer_class):
     try:
         try:
