@@ -1,6 +1,14 @@
 ## Introduction
 This is a simple Django web application that provides a REST API to retrieve location information based on a ZIP code. It uses the [ZipCodeAPI](https://www.zipcodeapi.com/) to get the location information.
 
+## Features
+- Django API implementation.
+- API to request information about certain ZIP code.
+- Dependency injection from urls.py into views.py.
+- SQLite database to save the information when it's new and retrive it when it already exists.
+- Call to an external API using an API KEY, only when the ZIP code does not exists in the database.
+- JWT authentication with token retrival and refresh endpoint.
+
 ## Prerequisites
 - Python 3.6 or higher
 - Django 3.2 or higher
