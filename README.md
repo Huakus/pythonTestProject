@@ -8,6 +8,7 @@ This is a simple Django web application that provides a REST API to retrieve loc
 - SQLite database to save the information when it's new and retrive it when it already exists.
 - Call to an external API using an API KEY, only when the ZIP code does not exists in the database.
 - JWT authentication with token retrival and refresh endpoint.
+- Logging.
 
 ## Prerequisites
 - Python 3.6 or higher
