@@ -7,6 +7,7 @@ from rest_framework_simplejwt.views import (
 from zipcodes.views import get_location_info
 from zipcodes.services import BasicLocationService
 from zipcodes.serializers import BasicLocationSerializer
+from zipcodes.models import Location
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,5 +15,5 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     
-    path('location/<str:zip_code>/', lambda request, zip_code: get_location_info(request, zip_code, BasicLocationService(), BasicLocationSerializer), name='get_location_info'),
+    path('location/<str:zip_code>/', lambda request, zip_code: get_location_info(request, zip_code, BasicLocationService(), BasicLocationSerializer, Location), name='get_location_info'),
 ]
